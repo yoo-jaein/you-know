@@ -1,0 +1,53 @@
+<%= render "navbar" %>
+
+<div class="container" >
+    <% unless @post.empty? %> 
+      <section style="margin-top: 100px;">
+        <h5 style="display:inline;"><strong>
+            <% if @post.first.category == 1 %>
+                K-POP
+            <% elsif @post.first.category == 2 %>
+                MOVIE
+            <% elsif @post.first.category == 3 %>
+                ANIMATION
+            <% elsif @post.first.category == 4 %>
+                GAME
+            <% elsif @post.first.category == 5 %>
+                DRAMA
+            <% elsif @post.first.category == 6 %>
+                BEAUTY
+            <% elsif @post.first.category == 7 %>
+                ETC.
+            <% end %>
+        </strong></h5><hr>
+        <div class="row">
+        <div class="col-sm">
+          
+          <% @post.each do |p| %>
+           <a href="/post/show/<%=p.id%>">
+            <figure class="snip1273 " style="width: 30%;">
+              
+             <% if p.video.present? %>
+              <img src="http://img.youtube.com/vi/<%= p.video.split("/")[-1] %>/hqdefault.jpg" class="card1">
+              <% else %>
+              <img src="<%= p.image.url %>" alt="사진" class="card1">
+            <% end %>
+            
+            <figcaption style="text-align:center;" > 
+              <p><%= p.title %></p>
+              <hr color="#f5f5f5" width="10%">
+              <h5><%= simple_format(p.content) %></h5>  
+              <p><i class="fas fa-heart heart1 fa-lg" style="color:#ff5252;"></i> <%= p.likes.size %></p>
+            </figcaption>
+            
+            </figure>
+            </a>
+          <% end %>
+        </div> 
+        </div>
+        
+      </section> 
+  <% end %>
+</div>
+
+<%= render "footer" %>

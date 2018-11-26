@@ -1,0 +1,42 @@
+<div class="container">
+  <div style="text-align:center; margin-top: 45px;">
+    <a href="/post/index"><img src="/assets/logo.png"  height="50" class="d-inline-block align-top" alt="logo"></a>
+  </div>
+  
+<div class="jumbotron" style="margin-top: 50px; padding:50px; width:500px; margin-left: auto; margin-right: auto; background-color: white; border-radius: 1; box-shadow: 0 6px 12px rgba(0,0,0,.1);">
+    
+    <div class="card-content" style="border-radius: 1 1 0 0;">
+       
+      <h2 class="text-center" style="font-weight: bold;">로그인</h2><hr/>
+      
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          
+          <div class="p-2 field">
+              <i class="fa fa-paper-plane"></i>
+              Email Address<br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "이메일" %><br />
+          </div>
+        
+          <div class="p-2 field">
+            <i class="fa fa-lock"></i>
+              Password<br />
+            <%= f.password_field :password, autocomplete: "current-password", placeholder: "비밀번호" %>
+          </div>
+        
+          <% if devise_mapping.rememberable? -%>
+            <div class="p-2 field">
+              <%= f.check_box :remember_me %>
+              기억하기
+            </div>
+          <% end -%>
+        
+          <div class="p-2 actions">
+            <button type="submit" name="commit" class="btn btn1 btn-light">로그인</button>
+          </div>
+          <% end %>
+        
+        <%= render "devise/shared/links" %>
+        
+    </div>
+  </div>
+</div>

@@ -1,0 +1,401 @@
+<%= render "navbar" %>
+
+<!--<section class="header" style="height:500px;">-->
+<!--<div style="text-align:justify; padding:50px">-->
+  <!--<p></p>-->
+          <!--<a href="/post/new" class="btn btn1 btn-light btn-lg" role="button">ASK NOW</a>-->
+
+<!--</div>-->
+<!--</section>-->
+<header>
+<div class = "header" style="height:500px;"></div>
+</header>
+
+<main>
+<div class="container" style="margin-top: 30px;">
+    <div style="text-align:center;">
+      <h5 class="text-uppercase">Q u e s t i o n s</p><h5>
+      <i class="material-icons">keyboard_arrow_down</i><br><br>
+    </div>
+  
+
+    <% unless @hot_post.empty? %>
+      <section id="owl-1" style="margin-top: 30px;">
+        <h5 style="display:inline;"><strong>Hot Ranking</strong></h5><a href="/post/all_hot"><p style="display:inline; color:grey;" > more</p></a>
+        <hr align=left width=20%>
+        <div class="owl-carousel owl-theme">
+          
+          <% @hot_post.each do |p| %>
+           <a href="/post/show/<%=p.id%>">
+            <figure class="snip1273 ">
+              
+             <% if p.video.present? %>
+              <img src="http://img.youtube.com/vi/<%= p.video.split("/")[-1] %>/hqdefault.jpg" class="card1">
+              <% else %>
+              <img src="<%= p.image.url %>" alt="사진" class="card1">
+            <% end %>
+            
+            <figcaption style="text-align:center;" > 
+              <p><%= p.title %></p>
+              <hr color="#f5f5f5" width="10%">
+              <h5><%= simple_format(p.content) %></h5>
+              <p><i class="fas fa-heart heart1 fa-lg" style="color:#ff5252;"></i> <%= p.likes.size %></p>
+            </figcaption>
+            
+            </figure>
+            </a>
+          <% end %>
+        </div> 
+      </section>
+    <%# else %>  
+  <% end %>
+  
+  
+  <% unless @recent_post.empty? %> 
+      <section id="owl-1" style="margin-top: 30px;">
+        <h5 style="display:inline;"><strong>Recent</strong></h5><a href="/post/all_recent"><p style="display:inline; color:grey;"> more</p></a>
+        <hr align=left width=20%>
+        <div class="owl-carousel owl-theme">
+          
+          <% @recent_post.each do |p| %>
+           <a href="/post/show/<%=p.id%>">
+            <figure class="snip1273 ">
+              
+             <% if p.video.present? %>
+              <img src="http://img.youtube.com/vi/<%= p.video.split("/")[-1] %>/hqdefault.jpg" class="card1">
+              <% else %>
+              <img src="<%= p.image.url %>" alt="사진" class="card1">
+            <% end %>
+            
+            <figcaption style="text-align:center;" > 
+              <p><%= p.title %></p>
+              <hr color="#f5f5f5" width="10%">
+              <h5><%= simple_format(p.content) %></h5> 
+              <p><i class="fas fa-heart heart1 fa-lg" style="color:#ff5252;"></i> <%= p.likes.size %></p>
+            </figcaption>
+            
+            </figure>
+            </a>
+          <% end %>
+        </div> 
+      </section> 
+  <% end %>
+  
+  
+  <% unless @order_post.empty? %> 
+      <section id="owl-1" style="margin-top: 30px;">
+        <h5 style="display:inline;"><strong>Most Viewed</strong></h5><a href="/post/all_viewed"><p style="display:inline; color:grey;"> more</p></a>
+        <hr align=left width=20%>
+        <div class="owl-carousel owl-theme">
+          
+          <% @order_post.each do |p| %>
+           <a href="/post/show/<%=p.id%>">
+            <figure class="snip1273 ">
+              
+             <% if p.video.present? %>
+              <img src="http://img.youtube.com/vi/<%= p.video.split("/")[-1] %>/hqdefault.jpg" class="card1">
+              <% else %>
+              <img src="<%= p.image.url %>" alt="사진" class="card1">
+            <% end %>
+            
+            <figcaption style="text-align:center;" > 
+              <p><%= p.title %></p>
+              <hr color="#f5f5f5" width="10%">
+              <h5><%= simple_format(p.content) %></h5> 
+              <p><i class="fas fa-heart heart1 fa-lg" style="color:#ff5252;"></i> <%= p.likes.size %></p>
+            </figcaption>
+            
+            </figure>
+            </a>
+          <% end %>
+        </div> 
+      </section> 
+  <% end %>
+
+  <% unless @post_1.empty? %> 
+      <section id="owl-1" style="margin-top: 30px;">
+        <h5 style="display:inline;"><strong>K-POP</strong></h5><a href="/post/preview/1"><p style="display:inline; color:grey;"> more</p></a>
+        <hr align=left width=20%>
+        <div class="owl-carousel owl-theme">
+          
+          <% @post_1.each do |p| %>
+           <a href="/post/show/<%=p.id%>">
+            <figure class="snip1273 ">
+              
+             <% if p.video.present? %>
+              <img src="http://img.youtube.com/vi/<%= p.video.split("/")[-1] %>/hqdefault.jpg" class="card1">
+              <% else %>
+              <img src="<%= p.image.url %>" alt="사진" class="card1">
+            <% end %>
+            
+            <figcaption style="text-align:center;" > 
+              <p><%= p.title %></p>
+              <hr color="#f5f5f5" width="10%">
+              <h5><%= simple_format(p.content) %></h5> 
+              <p><i class="fas fa-heart heart1 fa-lg" style="color:#ff5252;"></i> <%= p.likes.size %></p>
+            </figcaption>
+            
+            </figure>
+            </a>
+          <% end %>
+        </div> 
+      </section> 
+  <% end %>
+
+  <% unless @post_2.empty? %> 
+      <section id="owl-1" style="margin-top: 30px;">
+        <h5 style="display:inline;"><strong>MOVIE</strong></h5><a href="/post/preview/2"><p style="display:inline; color:grey;"> more</p></a>
+        <hr align=left width=20%>
+        <div class="owl-carousel owl-theme">
+          
+          <% @post_2.each do |p| %>
+           <a href="/post/show/<%=p.id%>">
+            <figure class="snip1273 ">
+              
+             <% if p.video.present? %>
+              <img src="http://img.youtube.com/vi/<%= p.video.split("/")[-1] %>/hqdefault.jpg" class="card1">
+              <% else %>
+              <img src="<%= p.image.url %>" alt="사진" class="card1">
+            <% end %>
+            
+            <figcaption style="text-align:center;" > 
+              <p><%= p.title %></p>
+              <hr color="#f5f5f5" width="10%">
+              <h5><%= simple_format(p.content) %></h5>  
+              <p><i class="fas fa-heart heart1 fa-lg" style="color:#ff5252;"></i> <%= p.likes.size %></p>
+            </figcaption>
+            
+            </figure>
+            </a>
+          <% end %>
+        </div> 
+      </section> 
+  <% end %>
+  
+  <% unless @post_3.empty? %> 
+      <section id="owl-1" style="margin-top: 30px;">
+        <h5 style="display:inline;"><strong>ANIMATION</strong></h5><a href="/post/preview/3"><p style="display:inline; color:grey;"> more</p></a>
+        <hr align=left width=20%>
+        <div class="owl-carousel owl-theme">
+          
+          <% @post_3.each do |p| %>
+           <a href="/post/show/<%=p.id%>">
+            <figure class="snip1273 ">
+              
+             <% if p.video.present? %>
+              <img src="http://img.youtube.com/vi/<%= p.video.split("/")[-1] %>/hqdefault.jpg" class="card1">
+              <% else %>
+              <img src="<%= p.image.url %>" alt="사진" class="card1">
+            <% end %>
+            
+            <figcaption style="text-align:center;" > 
+              <p><%= p.title %></p>
+              <hr color="#f5f5f5" width="10%">
+              <h5><%= simple_format(p.content) %></h5>  
+              <p><i class="fas fa-heart heart1 fa-lg" style="color:#ff5252;"></i> <%= p.likes.size %></p>
+            </figcaption>
+            
+            </figure>
+            </a>
+          <% end %>
+        </div> 
+      </section> 
+  <% end %>
+  
+  <% unless @post_4.empty? %> 
+      <section id="owl-1" style="margin-top: 30px;">
+        <h5 style="display:inline;"><strong>GAME</strong></h5><a href="/post/preview/4"><p style="display:inline; color:grey;"> more</p></a>
+        <hr align=left width=20%>
+        <div class="owl-carousel owl-theme">
+          
+          <% @post_4.each do |p| %>
+           <a href="/post/show/<%=p.id%>">
+            <figure class="snip1273 ">
+              
+             <% if p.video.present? %>
+              <img src="http://img.youtube.com/vi/<%= p.video.split("/")[-1] %>/hqdefault.jpg" class="card1">
+              <% else %>
+              <img src="<%= p.image.url %>" alt="사진" class="card1">
+            <% end %>
+            
+            <figcaption style="text-align:center;" > 
+              <p><%= p.title %></p>
+              <hr color="#f5f5f5" width="10%">
+              <h5><%= simple_format(p.content) %></h5>
+              <p><i class="fas fa-heart heart1 fa-lg" style="color:#ff5252;"></i> <%= p.likes.size %></p>
+            </figcaption>
+            
+            </figure>
+            </a>
+          <% end %>
+        </div> 
+      </section> 
+  <% end %>
+
+
+  <% unless @post_5.empty? %> 
+      <section id="owl-1" style="margin-top: 30px;">
+        <h5 style="display:inline;"><strong>DRAMA</strong></h5><a href="/post/preview/5"><p style="display:inline; color:grey;"> more</p></a>
+        <hr align=left width=20%>
+        <div class="owl-carousel owl-theme">
+          
+          <% @post_5.each do |p| %>
+           <a href="/post/show/<%=p.id%>">
+            <figure class="snip1273 ">
+              
+             <% if p.video.present? %>
+              <img src="http://img.youtube.com/vi/<%= p.video.split("/")[-1] %>/hqdefault.jpg" class="card1">
+              <% else %>
+              <img src="<%= p.image.url %>" alt="사진" class="card1">
+            <% end %>
+            
+            <figcaption style="text-align:center;" > 
+              <p><%= p.title %></p>
+              <hr color="#f5f5f5" width="10%">
+              <h5><%= simple_format(p.content) %></h5> 
+              <p><i class="fas fa-heart heart1 fa-lg" style="color:#ff5252;"></i> <%= p.likes.size %></p>
+            </figcaption>
+            
+            </figure>
+            </a>
+          <% end %>
+        </div> 
+      </section> 
+  <% end %>
+
+
+  <% unless @post_6.empty? %> 
+      <section id="owl-1" style="margin-top: 30px;">
+        <h5 style="display:inline;"><strong>BEAUTY</strong></h5><a href="/post/preview/6"><p style="display:inline; color:grey;"> more</p></a>
+        <hr align=left width=20%>
+        <div class="owl-carousel owl-theme">
+          
+          <% @post_6.each do |p| %>
+           <a href="/post/show/<%=p.id%>">
+            <figure class="snip1273 ">
+              
+             <% if p.video.present? %>
+              <img src="http://img.youtube.com/vi/<%= p.video.split("/")[-1] %>/hqdefault.jpg" class="card1">
+              <% else %>
+              <img src="<%= p.image.url %>" alt="사진" class="card1">
+            <% end %>
+            
+            <figcaption style="text-align:center;" > 
+              <p><%= p.title %></p>
+              <hr color="#f5f5f5" width="10%">
+              <h5><%= simple_format(p.content) %></h5> 
+              <p><i class="fas fa-heart heart1 fa-lg" style="color:#ff5252;"></i> <%= p.likes.size %></p>
+            </figcaption>
+            
+            </figure>
+            </a>
+          <% end %>
+        </div> 
+      </section> 
+  <% end %>
+
+  
+  <% unless @post_7.empty? %> 
+      <section id="owl-1" style="margin-top: 30px;">
+        <h5 style="display:inline;"><strong>ETC</strong></h5><a href="/post/preview/7"><p style="display:inline; color:grey;"> more</p></a>
+        <hr align=left width=20%>
+        <div class="owl-carousel owl-theme">
+          
+          <% @post_7.each do |p| %>
+           <a href="/post/show/<%=p.id%>">
+            <figure class="snip1273 ">
+              
+             <% if p.video.present? %>
+              <img src="http://img.youtube.com/vi/<%= p.video.split("/")[-1] %>/hqdefault.jpg" class="card1">
+              <% else %>
+              <img src="<%= p.image.url %>" alt="사진" class="card1">
+            <% end %>
+            
+            <figcaption style="text-align:center;" > 
+              <p><%= p.title %></p>
+              <hr color="#f5f5f5" width="10%">
+              <h5><%= simple_format(p.content) %></h5> 
+              <p><i class="fas fa-heart heart1 fa-lg" style="color:#ff5252;"></i> <%= p.likes.size %></p>
+            </figcaption>
+            
+            </figure>
+            </a>
+          <% end %>
+        </div> 
+      </section> 
+  <% end %>
+  
+  <%# unless current_user.likes %>
+<%# if Post.search %>
+
+   <% if user_signed_in? %>
+      <a href="/post/new" class="float">
+      <i class="fa fa-pencil my-float"></i></a>
+  <% end %>
+
+
+</div>
+</main>
+<%= render "footer" %>
+
+
+
+
+<%# @post.each do |p| %>
+   <!-- <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">title: <%#= p.title %></h5>
+        <p class="card-text">id: <%#= p.id %></p>
+        <%# if p.video.present? %>
+        <p class="card-text">video: <%#= p.video %></p>
+        <%# end %>
+        <p class="card-text">content: <%#= p.content %></p>
+        <div><%#= p.created_at.to_s.split("+").first %></div>
+      </div>
+    </div>
+  <%# end %>
+</div>-->
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function open_Dialog(){
+  modal.style.display = "block";
+  // alert("@");
+}
+function close_Modal(){
+  modal.style.display = "none";
+  
+}
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../../../assets/js/vendor/popper.min.js"></script>
+<script src="../../../../dist/js/bootstrap.min.js"></script>
+<script src="../../../../assets/js/vendor/holder.min.js"></script>

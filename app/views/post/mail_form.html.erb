@@ -1,0 +1,82 @@
+<%= render "navbar" %>
+<%= begin %>
+<div class="container">
+    <div class="jumbotron" style="margin-top: 100px; padding-top:30px; background-color: white; border-radius: 1; box-shadow: 0 6px 12px rgba(0,0,0,.1);">
+    
+    <h1>Email Form</h1>
+
+      <form action="/email/mail_send" method="post">
+        <body class="index">
+        <div class="container text-center">
+          <div class="p-2 field">
+            <a href="/maholi/show">
+              <img src="/assets/logo.png" alt="logo" style="width:286px; height:75px; padding-right:5px;">
+            </a>
+            <input type='hidden' value=<%=@token %> name= 'authenticity_token'></input>
+          </div>
+          <hr class="my-4">
+                <div class="p-2 field">
+               mail: <input type ="text" name = "mail"><br>
+                </div>
+            
+                <div class="p-2 field">
+                Title: <input type = "text" name="title"><br>
+                </div>
+            
+                <div class="p-2 field">
+                    Content: <textarea cols="40" rows= "5" name= "content"></textarea><br>
+                </div>
+                
+                <div class="p-2 actions">
+                <button type="submit" class="btn btn-light">send</button>
+                  </div>
+          
+  </div>
+</body>
+</form>
+      
+    <!--<h5>고객센터</h5><br>-->
+      
+    <!--    <ul class="nav nav-tabs" id="myTab" role="tablist">-->
+    <!--      <li class="nav-item">-->
+    <!--        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">QnA</a>-->
+    <!--      </li>-->
+    <!--      <li class="nav-item">-->
+    <!--        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">작성한 댓글</a>-->
+    <!--      </li>-->
+    <!--      <li class="nav-item">-->
+    <!--        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">좋아요한 글</a>-->
+    <!--      </li>-->
+    <!--      <li class="nav-item">-->
+    <!--        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#followers" role="tab" aria-controls="followers" aria-selected="false">Followers</a>-->
+    <!--      </li>-->
+    <!--      <li class="nav-item">-->
+    <!--        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#followings" role="tab" aria-controls="followings" aria-selected="false">Followings</a>-->
+    <!--      </li>-->
+    <!--    </ul>-->
+        
+    <!--    <div class="tab-content" id="myTabContent" style="padding-top:20px;">-->
+            
+    <!--      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">-->
+            
+    <!--      </div>-->
+          
+    <!--      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">-->
+                      
+    <!--      </div>-->
+             
+          
+    <!--      <div class="tab-pane fade" id="followers" role="tabpanel" aria-labelledby="contact-tab">-->
+                    
+    <!--      </div> -->
+          
+    <!--      <div class="tab-pane fade" id="followings" role="tabpanel" aria-labelledby="contact-tab">-->
+                   
+    <!--      </div>      -->
+          
+    <!--    </div>-->
+        
+    </div>
+</div>
+<%= end %>
+<%= render "footer" %>

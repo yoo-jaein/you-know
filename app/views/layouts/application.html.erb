@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouKnow?!</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <!--Let browser know website is optimized for mobile-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="/assets/favicon.ico">
+  
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ 
+  <!--슬라이드-->
+  <link rel="stylesheet" type="text/css" href="/assets/owl.carousel.min.css">
+<!--  <link rel="stylesheet" type="text/css" href="/assets/owl.theme.default.min.css">-->
+
+      
+  
+  
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Nanum+Gothic" rel="stylesheet">
+  <style>
+  .follow-words{
+    vertical-align: bottom;
+    font-family: 'Montserrat','Nanum Gothic', sans-serif;
+  }
+    
+
+  
+  a{
+    color:black;
+  }
+  
+  a:hover{
+    color:#ff8a80;
+    text-decoration:none;
+  }
+  
+  
+  .jumbotron{
+    margin-top: 100px;
+  }
+  
+  
+  .subtitles{
+     position: relative;
+    background-image: url(assets/subtitle1.png);                                                               
+    height: 100vh;
+    background-size: cover;
+  }
+
+    body{
+      font-family: 'Montserrat','Nanum Gothic', sans-serif;
+    }
+    
+    p{
+      margin: 8px;
+
+    }
+    
+    i.heart1:hover{
+      color:grey!important;
+      
+    }
+    
+    i.heart2:hover{
+      color:#ff5252!important;
+      
+    }
+    
+    .navbar {
+      border-radius: 0;
+      box-shadow: 0 6px 12px rgba(0,0,0,.05);
+    }
+    
+    .btn1 {
+    background-color: #ff8a80;
+    border-color: #ff8a80;
+    color: white;
+    }
+  
+    .btn1:hover {
+    background-color: #c85a54;
+    border-color: #c85a54;
+    color: white;
+    }
+    
+    .btn1:active {
+    background-color: #c85a54!important;;
+    border-color: #c85a54!important;;
+    color: white!important;;
+    }
+    
+    .dropdown-item:active {
+    background-color: #c85a54!important;;
+    }
+    
+    body {
+      background-color: #f5f5f5;
+    }
+   
+    img.profile-img { height: 36px; position: relative; top: 14px }
+    
+     
+    .float
+    {
+    	position:fixed;
+    	width:60px;
+    	height:60px;
+    	bottom:40px;
+    	right:40px;
+    	background-color:#ff8a80;
+    	color:#FFF;
+    	border-radius:50px;
+    	text-align:center;
+    	box-shadow: 2px 2px 3px #999;
+    	z-index:100;
+    }
+  
+    .float:hover
+    {background-color:#c85a54;
+      color:white;
+    }
+    
+    .my-float
+    {
+    	font-size:24px;
+    	margin-top:18px;
+    }
+    
+    a.float + div.label-container 
+    {
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.5s ease;
+    }
+    
+    a.float:hover + div.label-container
+    {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+     header {
+      text-align: center;
+      background-image: url(/assets/header1.jpg);
+      background-repeat: no-repeat;
+
+      /*background-position: center center;*/
+      -webkit-background-size: contain;
+      -moz-background-size: contain;
+      -o-background-size: contain;
+      background-size: contain;
+      height: 100%;
+      width: 100%;
+      
+      background-attachment: fixed;
+    } 
+    
+  
+    #questioncontents{
+    display: table; margin-left: auto; margin-right: auto;
+    margin-top:auto; margin-bottom:auto; 
+    vertical-align: middle;
+    }
+    
+    .snip1273 {
+      position: relative;
+      float: left;
+      margin: 10px 1%;
+      min-width: 310px -60px;
+      max-width: 405px;
+      width: 100%;
+      color: #ffffff;
+      text-align: left;
+      background-color: #000000;
+      font-size: 16px;
+      overflow: hidden;
+      
+    }
+    .snip1273 * {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-transition: all 0.4s ease-in;
+      transition: all 0.4s ease-in;
+    }
+    .snip1273 img {
+      position: relative;
+      max-width: 100%;
+      vertical-align: top;
+    }
+    
+    .snip1273:hover img {
+      -moz-transform: scale(1.05);
+      -webkit-transform: scale(1.05);
+      transform: scale(1.05);
+    }
+
+    .snip1273 figcaption {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0;
+      padding: 20px 30px;
+    }
+    .snip1273 figcaption:before,
+    .snip1273 figcaption:after {
+      width: 1px;
+      height: 0;
+    }
+    .snip1273 figcaption:before {
+      right: 0;
+      top: 0;
+    }
+    .snip1273 figcaption:after {
+      left: 0;
+      bottom: 0;
+    }
+    .snip1273 h5,
+    .snip1273 p {
+      line-height: 1.5em;
+    }
+    .snip1273 h5 {
+      margin: 0 0 5px;
+      font-weight: 500;
+      text-transform: uppercase;
+      
+    }
+    
+    
+    .snip1273 p {
+      font-size: 1em;
+      font-weight: 500;
+      margin: 0 0 15px;
+    }
+    .snip1273 a {
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 1;
+    }
+    .snip1273:before,
+    .snip1273:after,
+    .snip1273 figcaption:before,
+    .snip1273 figcaption:after {
+      position: absolute;
+      content: '';
+      background-color: #ffffff;
+      z-index: 1;
+      -webkit-transition: all 0.4s ease-in;
+      transition: all 0.4s ease-in;
+      opacity: 0.8;
+    }
+    .snip1273:before,
+    .snip1273:after {
+      height: 1px;
+      width: 0%;
+    }
+    .snip1273:before {
+      top: 0;
+      left: 0;
+    }
+    .snip1273:after {
+      bottom: 0;
+      right: 0;
+    }
+    .snip1273:hover img,
+    .snip1273.hover img {
+      opacity: 0.3;
+    }
+    .snip1273:hover figcaption,
+    .snip1273.hover figcaption {
+      opacity: 1;
+    }
+    .snip1273:hover figcaption:before,
+    .snip1273.hover figcaption:before,
+    .snip1273:hover figcaption:after,
+    .snip1273.hover figcaption:after {
+      height: 100%;
+    }
+    .snip1273:hover:before,
+    .snip1273.hover:before,
+    .snip1273:hover:after,
+    .snip1273.hover:after {
+      width: 100%;
+    }
+    .snip1273:hover:before,
+    .snip1273.hover:before,
+    .snip1273:hover:after,
+    .snip1273.hover:after,
+    .snip1273:hover figcaption:before,
+    .snip1273.hover figcaption:before,
+    .snip1273:hover figcaption:after,
+    .snip1273.hover figcaption:after {
+      opacity: 0.1;
+    }
+
+    .card:hover{
+       background: rgba(0, 0, 0, 0.1);
+       color:black;
+             -webkit-transition: all 0.4s ease-in;
+      transition: all 0.4s ease-in;
+    }
+
+    
+    .owl-prev {
+      height: 54px;
+      position: absolute;
+      top: 40%;
+      width: 27px;
+      z-index: 1000;
+      left: 1%;
+      cursor: pointer;
+      color: transparent;
+      margin-top: -27px;
+    }
+    
+    .owl-next {
+      height: 54px;
+      position: absolute;
+      top: 40%;
+      width: 27px;
+      z-index: 1000;
+      right: 1%;
+      cursor: pointer;
+      color: transparent;
+    
+    }
+    
+    .owl-prev:hover,
+    .owl-next:hover {
+      opacity: 1.5;
+    }
+  </style>
+  
+  
+<script type="text/javascript">
+    function showHide(id) {
+       var obj = document.getElementById(id);
+       if (obj.style.display == 'none')
+           obj.style.display = 'block';
+       else
+           obj.style.display = 'none';
+    }
+</script>
+  
+</head>
+<body>
+
+<%= render '/post/alarm' %>
+
+ 
+ 
+<%= yield %>
+
+  <!--부트스트랩-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+  <script type="text/javascript" src="/assets/owl.carousel.min.js"></script>
+  <script>
+  
+  $(document).ready(function(){
+    
+    // OWL CAROUSEL - https://owlcarousel2.github.io/OwlCarousel2/
+    
+    $('#owl-1 .owl-carousel').owlCarousel(
+      {
+        items: 3,
+        margin: 16,
+        //loop: true,
+        //stagePadding: 64,
+        nav: true,
+        // navText: ['Back','Next'],
+        //navText: ['',''],
+        // navText: ["<img src='myprevimage.png'>","<img src='mynextimage.png'>"],
+        dots: false,
+        dotsEach: true,
+        lazyLoad: false,
+        autoplay: true,
+        autoplaySpeed: 500,
+        navSpeed: 500,
+        autoplayTimeout: 2000,
+        autoplayHoverPause: true,
+      }
+    );
+    
+    
+    
+  });
+  </script>
+  
+  
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<%= render "post/navbar" %>
+<%# =begin %>
+<div class="container">
+    <div class="jumbotron" style="margin-top: 100px; padding-top:30px; background-color: white; border-radius: 1; box-shadow: 0 6px 12px rgba(0,0,0,.1);">
+
+      <form action="/email/email_send" method="post">
+        <div class="container text-center">
+          <div class="p-2 field">
+            <a href="/post/index">
+              <img src="/assets/logo.png" alt="logo" style="width:286px; height:75px; padding-right:5px;">
+            </a>
+            <input type='hidden' value=<%=@token %> name= 'authenticity_token'></input>
+          </div>
+          <hr class="my-4">
+                <div class="p-2 field">
+              <i class="fa fa-paper-plane"></i>
+              Email Address<br />
+              <input type ="text" name = "mail"><br> <input type="hidden" type ="text" name = "email" value="leegyul1015@gmail.com">
+                </div>
+
+                <div class="p-2 field">
+                Title<br />
+                <input type = "text" name="title"><br>
+                </div>
+            
+                <div class="p-2 field">
+                    Content<br />
+                    <textarea cols="40" rows= "5" name= "content"></textarea><br>
+                </div>
+                
+                <div class="p-2 actions">
+                <button type="submit" class="btn btn1 btn-light">send</button>
+                  </div>
+          
+        </div>
+      </form>
+</div>
+</div>
+<%# =end %>
+
+<%= render "post/footer" %>

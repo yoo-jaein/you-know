@@ -1,0 +1,221 @@
+<%= render "navbar" %>
+
+<div class="container">
+<div class="jumbotron" style="margin-top: 100px; padding-top:30px; background-color: white; border-radius: 1; box-shadow: 0 6px 12px rgba(0,0,0,.1);">
+        <div class="row" style="margin-bottom: 22px; padding:10px">
+            <div class="col-2">
+              <% if @user.avatar.url.present? %>
+                <img src="<%= @user.avatar.url %>" width="150" height="150" class="rounded-circle" alt="profile">
+              <% else %>
+                <i class="large material-icons">person</i>
+              <% end %>
+            </div>
+            <div class="col-10" style="padding:30px;">
+              
+              <h3 style="display:inline;"><strong><%= @user.username %></strong></h3>
+              <% if current_user == @user %>
+                  <a href="/users/edit"><i class="right medium material-icons">settings</i></a>
+              <% end %>
+              <br/>
+               <div style="font-size:0.9rem;">
+                 <p><%= @user.followers.length %> Followers ㅣ <%= @user.followings.length %> Following</p>
+               </div>
+               <div style="font-size:0.9rem;">
+                 <% if user_signed_in? && current_user != @user %>
+                    <% if current_user.followings.include?(@user)%>
+                     <%= form_tag follow_path(@user.id), method: :delete, class: "right" do %>
+                      <button class="btn btn-dark btn-sm"><i class="fas fa-bookmark"></i> UNFOLLOW</button>
+                      <% end %>
+                    <% else %>
+                    <%= form_tag follows_path, method: :post, class: "right" do %> 
+                     <input type="hidden" name="followed_id" value="<%= @user.id%>">
+                     <button class="btn btn-dark btn-sm"><i class="far fa-bookmark"></i> FOLLOW</button>
+                     <% end %>
+                    <% end %>
+                  <% end %>
+                </div>
+            </div>
+        
+
+
+</div> 
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">작성한 글</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">작성한 댓글</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">좋아요한 글</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#followers" role="tab" aria-controls="followers" aria-selected="false">Followers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#followings" role="tab" aria-controls="followings" aria-selected="false">Following</a>
+      </li>
+    </ul>
+    
+    <div class="tab-content" id="myTabContent" style="padding-top:20px;">
+        
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        
+        <div class="row">
+        
+          <% cnt = 0 %>
+          <% likes = 0 %>
+          
+          <% @post.each do |p| %>
+            <div class="col-6" style="margin-bottom:25px">
+              <a href="/post/show/<%= p.id %>" >
+                
+              <div class="card" >
+                <% cnt=cnt+1 %> 
+                
+                <div class="card-header">
+                  <div class="row">
+                  <p class="col-8"><%= cnt %>번째 글 </p>
+                  <p class="col-3" style="text-align:right;"><i class="fas fa-heart fa-sm" style="color:#ff5252;"></i> <%= p.likes.size %>명</p>
+                  <% likes = likes + p.likes.size %>
+                  </div>
+                </div>
+                
+                <div class="card-body">
+                  <h5><strong><%= p.title %></strong></h5>
+                  <p><%= simple_format(p.content) %><br>
+                </div>
+                
+              </div>
+              </a>
+            </div>
+          <% end %>
+          
+        </div>
+
+      </div>
+      
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="row">
+        
+          <% cnt = 0 %>
+          
+          <% @comment.each do |c| %>
+            <div class="col-6" style="margin-bottom:25px">
+              <a href="/post/show/<%= c.post_id %>" >
+                
+              <div class="card" >
+                <% cnt=cnt+1 %> 
+                
+                <div class="card-header">
+                  <p><%= cnt %>번째 댓글 </p>
+
+                </div>
+                
+                <div class="card-body">
+                  <p><%= simple_format(c.content) %><br>
+                  
+                  <% if c.audio.url.nil? %>
+                  <% else %>
+                    <audio controls src="<%= c.audio.url %>"></audio>
+                  <% end %>
+                </div>
+                
+              </div>
+              </a>
+            </div>
+          <% end %>
+          
+        </div>
+
+      </div>
+      
+      
+      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="row">
+        
+          <% cnt = 0 %>
+          
+          <% @like.each do |l| %>
+          <% v = Post.find_by(id: l.post_id) %>
+            <div class="col-6" style="margin-bottom:25px">
+              <a href="/post/show/<%= l.post_id %>" >
+                
+              <div class="card" >
+                <% cnt=cnt+1 %> 
+                
+                <% unless v.nil? %>
+                <div class="card-header">
+                  <%= cnt %>번째 좋아요
+                </div>
+                
+                
+                <div class="card-body">
+                  <h5><strong><%= v.title %></strong></h5>
+                  <p><%= simple_format(v.content) %><br>
+                </div>
+                
+              </div>
+              </a>
+            </divvrrr>
+            <% end %>
+          <% end %>
+          
+        </div>        
+ 
+      </div>
+      
+      <div class="tab-pane fade" id="followers" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="row">
+            <% if @user.followers %>
+                <% @user.followers.each do |p| %>
+                <div class="col-1" style="text-align:center;">
+                  <a href="/post/user_info/<%= p.id %>">
+                    
+                    <% if p.avatar.url.present? %>
+                      <img src="<%= p.avatar.url %>" width="50" height="50" class="rounded-circle border " alt="profile"><br/>
+                    <% else %>
+                      <img src="/assets/user.png" width="50" height="50" class="rounded-circle border " alt="profile"><br/>
+                    <% end %>
+                    
+                    <%= p.username%></a>
+                  </div>
+                
+                <% end %>
+            <% end %> 
+            </div>
+      </div> 
+      
+      <div class="tab-pane fade" id="followings" role="tabpanel" aria-labelledby="contact-tab">
+            <% @user.followings.each do |p| %>
+                <div class="col-1" style="text-align:center;">
+                  <a href="/post/user_info/<%= p.id %>">
+                    
+                    <% if p.avatar.url.present? %>
+                      <img src="<%= p.avatar.url %>" width="50" height="50" class="rounded-circle border " alt="profile"><br/>
+                    <% else %>
+                      <img src="/assets/user.png" width="50" height="50" class="rounded-circle border " alt="profile"><br/>
+                    <% end %>
+                    
+                    <%= p.username%></a>
+                </div>
+            <% end %>        
+      </div>      
+      
+    </div>
+    
+</div>
+</div>
+
+<!--has_many :impressions, :as=>:impressionable-->
+<!-- is_impressionable :counter_cache => true, :unique => true-->
+  
+<%= render "footer" %>
+
+<script>
+var instance = M.Tabs.init(el, options);
+  // Or with jQuery
+  
+
+</script>
+

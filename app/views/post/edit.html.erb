@@ -1,0 +1,77 @@
+<%= render "navbar" %>
+
+<div class="container">
+<div class="jumbotron" style="background-color: white; border-radius: 1; box-shadow: 0 6px 12px rgba(0,0,0,.1);">
+    <h3 style="text-align: center;">Edit Your Post</h3>
+    <form action="/post/update/<%= @post.id %>" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="exampleFormControlInput1">제목</label>
+        <input name="input_title" type="text" class="form-control" id="exampleFormControlInput1" value="<%= @post.title %>">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">질문</label>
+          <div class="container row" style="margin-bottom: 3px;">
+            <input class="form-control form-control-sm" type="number" placeholder="00" min="0" style="width:5%">:
+            <input class="form-control form-control-sm" type="number" placeholder="00" min="0" style="width:5%">:
+            <input class="form-control form-control-sm" type="number" placeholder="00" min="0" style="width:5%">
+            <small>재생시간 선택</small>
+         </div>
+        <textarea name="input_content" class="form-control" id="exampleFormControlTextarea1" rows="3"><%= @post.content%></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">유튜브 주소</label>
+        <input name="input_video" type="text" class="form-control"  value="<%= @post.video %>" id="exampleFormControlInput1" placeholder="https://youtu.be/example">
+      </div>
+      
+      <div class="row">
+        <div class="form-group col">
+            <label for="exampleFormControlSelect1">Category</label>
+            <select name="input_category" id="input_category" class="form-control">
+              <option value="" disabled selected>Choose your option</option>
+              <option value="1">K-POP</option>
+              <option value="2">MOVIE</option>
+              <option value="3">ANIMATION</option>            
+              <option value="4">GAME</option>
+              <option value="5">DRAMA</option>
+              <option value="6">BEAUTY</option>
+              <option value="7">ECT</option>
+            </select>
+        </div>
+        <div class="form-group file-field input-field col">
+          
+          
+          <div class="form-group">
+        <label for="exampleFormControlTextarea1">태그</label>
+        <input name="body" type="text" class="form-control"  value="<%= @post.body %>" id="exampleFormControlInput1" placeholder="#태그를 적어주세요">
+      </div>
+            <!--<div class="form-group">-->
+            <!--  <label for="exampleFormControlFile1">File</label>-->
+            <!--  <input type="file" class="form-control-file" name="image" accept="image/*">-->
+            <!--</div>-->
+          
+        </div>
+      </div>
+      <div style="text-align: center;">
+      <button type="submit" class="btn btn1 btn-light">수정하기 <i class="material-icons">check</i></button>
+      </div>
+    </form>
+</div>
+</div>
+
+
+        
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems, options);
+    });
+  
+    // Or with jQuery
+  
+    $(document).ready(function(){
+      $('select').formSelect();
+    });
+</script>
+
+<%= render "footer" %>

@@ -1,0 +1,127 @@
+<!--<div class="container">-->
+<!--<div class="jumbotron" style="margin-top: 50px; padding:50px; width:500px; margin-left: auto; margin-right: auto; background-color: white; border-radius: 1; box-shadow: 0 6px 12px rgba(0,0,0,.1);">-->
+<!--    <div class="card-content">-->
+<!--          <h2 class="text-center" style="font-weight: bold;">Sign Up</h2>-->
+<!--          <p class="text-center"><%#= render "devise/shared/links" %></p>-->
+<!--          <hr/>-->
+        
+<!--          <%#= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>-->
+<!--            <%#= devise_error_messages! %>-->
+          
+<!--            <div class="p-2 field"> -->
+<!--              <i class="fa fa-paper-plane"></i>-->
+<!--              Email Address<br />-->
+<!--              <%#= f.email_field :email, autofocus: true, autocomplete: "email" %>-->
+<!--            </div>-->
+            
+<!--            <div class="p-2 field">-->
+<!--              <i class="fa fa-user"></i>Username <br />-->
+<!--              <%#= f.text_field :username %>-->
+<!--            </div>-->
+
+
+<!--            <div class="p-2 field">-->
+<!--              <i class="fa fa-lock"></i>-->
+<!--              Password-->
+<!--              <%# if @minimum_password_length %>-->
+<!--              <small>(최소 <%#= @minimum_password_length %>글자)</small><br />-->
+<!--              <%# end %>-->
+<!--              <%#= f.password_field :password, autocomplete: "new-password"%>-->
+<!--            </div>-->
+          
+<!--            <div class="p-2 field">-->
+<!--              					<i class="fa fa-lock"></i>-->
+<!--              Password Confirmation<br />-->
+<!--              <%#= f.password_field :password_confirmation, autocomplete: "new-password" %>-->
+<!--            </div>-->
+            
+<!--            <div class="p-2 field">-->
+<!--              <i class="fa fa-image"></i>-->
+<!--              Profile Picture<br />-->
+<!--              <%#= f.file_field :avatar %>-->
+<!--            </div>-->
+          
+<!--            <div class="p-2 actions " style="text-align: center;">-->
+<!--              <button type="submit" name="commit" class="btn btn1 btn-light"><i class="material-icons">check</i></button>-->
+<!--            </div>-->
+            
+            
+<!--          <%# end %>-->
+        
+        
+
+<!--   </div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+
+<div class="container">
+<div class="jumbotron" style="margin-top: 50px; padding:50px; width:500px; margin-left: auto; margin-right: auto; background-color: white; border-radius: 1; box-shadow: 0 6px 12px rgba(0,0,0,.1);">
+    <div class="card-content">
+          <h2 class="text-center" style="font-weight: bold;">User_Info Edit</h2></h2>
+          <p class="text-center"><%#= render "devise/shared/links" %></p>
+          <hr/>
+
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%#= f.error_notification %>
+
+  <div class="p-2 field"> 
+  <i class="fa fa-paper-plane"></i>
+  <br/>
+  <%= f.text_field :username, required: true, autofocus: true %>
+  </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+    <% end %>
+
+  <div class="p-2 field">
+     <i class="fa fa-lock"></i>
+      New Password<br />
+     <%= f.password_field :password, autocomplete: "off", required: false %> <!-- hint: "leave it blank if you don't want to change it"-->
+  </div>
+  
+  <div class="p-2 field">
+    <i class="fa fa-lock"></i>
+    Password Confirmation<br />
+    <%= f.password_field :password_confirmation, required: false %>
+  </div>
+  
+  <div class="p-2 field">
+    <i class="fa fa-lock"></i>
+     Current Confirmation <br />
+     <%= f.password_field :current_password, required: true %>               <!-- hint: "we need your current password to confirm your changes"-->
+  </div>
+  
+  <div class="p-2 field">
+      <i class="fa fa-image"></i>
+          프로필 사진 변경<br/>
+          <%#= f.label :avatar %><br />
+          <%= f.file_field :avatar %>
+  </div>
+  
+<hr/>
+  <!--<div class="form-actions" style="text-align: center;">-->
+    
+    <div class="p-2 actions " style="text-align: center;">
+              <button type="submit" name="commit" class="btn btn1 btn-light"><i class="material-icons">check</i></button>
+    </div>
+    <%#= f.button :submit, "Update" %>
+  <!--</div>-->
+<% end %>
+
+<br/>
+<br/>
+<div class="p-2 actions " style="text-align: center;">
+
+<p><%= link_to "계정 삭제", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "뒤로가기", :back %>
+
+ </div>
+</div>
+</div>
+</div>

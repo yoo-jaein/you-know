@@ -1,0 +1,202 @@
+<%= render "navbar" %>
+<div class="container">
+<div class="jumbotron" style="margin-top: 100px; padding-top:30px; padding-bottom:30px; background-color: white; border-radius: 1; box-shadow: 0 6px 12px rgba(0,0,0,.1);">
+    <div style="text-align:right;">
+        <% if current_user.present? %>
+            <% if current_user.id == @post.user_id %>
+            <a href="/post/edit/<%= @post.id %>" ><span class="badge">수정</span></a>
+            <a href="/post/destroy/<%= @post.id %>"><span class="badge">삭제</span></a>
+            <% else %>
+            <% end %>
+        <% end %>
+    </div>
+    
+    <div class="row">
+        <div class="col-10" style="display:inline;">
+            <h4><strong><%= @post.title %></strong><%if current_user.nil? %>
+                 <% else %>
+                    <% if current_user.acts_like?(@post) %>
+                        <!-- <a href="/likes/likes_toggle/<%#= @post.id %>">좋아요 취소</a>-->
+                        
+                        <form style="display:inline;" action='/post/<%= @post.id%>/like' method='post'>
+                        <button class="btn btn-link"><i class="fas fa-heart heart1 fa-lg" style="color:#ff5252;"></i></button><a style="display:inline;"><%= @post.likes.size %></a>  
+                        </form>
+                    <% else%>
+                        <!-- <a href="/likes/likes_toggle/<%#= @post.id %>">좋아요</a>-->
+                        <form style="display:inline;" action='/post/<%= @post.id%>/like' method='post'>
+                        <!--<input type="hidden" value="1" name="like"></input>-->
+                        <button class="btn btn-link"><i class="fas fa-heart heart2 fa-lg" style="color:grey;"></i></button><a  style="display:inline;"><%= @post.likes.size %></a>  
+                        </form>
+                    <% end %>
+                 <% end %></h4>
+                          <!-- img src="<%#= current_user.avatar.url%>" />-->
+                
+      
+        </div>
+        <div class="col-2" style="text-align:right;">      
+            <% if @post.user.avatar.present? %>
+            <img width="35" height="35" class="rounded-circle border" src="<%= @post.user.avatar.url %>" />
+            <% end %>
+            <a href="/post/user_info/<%= @post.user.id %>"><%= @post.user.username %></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <span href="/post/hashtag/#{word.delete('#')}" class="badge badge-light" ><%= render_with_hashtags(@post.body) %></span>
+        </div>
+        <div class="col-6">
+           <div style="text-align:right;">
+             <p style= "font-size: 10pt;"><%= @post.created_at.to_s.split("+").first %> | <%= "#{@post.unique_impression_count}views" %></p>
+           </div>
+        </div>
+    </div>
+
+ <hr/ style="margin: 5px;">
+     
+   
+    <div class="row">
+      <div class="col s6">
+   <% if @post.video.present? %>
+          <div class="video-container" style="position:relative; width:100%; padding:56.6% 0 6px;">
+          <iframe style="position:absolute; top:0; left:0; width:100%; height:100%; " src="https://www.youtube.com/embed/<%= @post.video.split("/")[-1] %>?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+      
+   <% else %>
+        <!--<div class="card post" >-->
+         <!--<div class="card-image">-->
+        <% if @post.image.url %>
+          <img src="<%= @post.image.url %>" class="panel-body" />
+        <% end %>
+    <% end %>
+    
+        </div>
+      
+      <div class="col s6">
+          
+            <div style="text-align:right;">
+              <%# if user_signed_in? && current_user != @post.user %>
+                <%# if current_user.followings.include?(@post.user)%>
+                 <%#= form_tag follow_path(@post.user.id), method: :delete, class: "right" do %>
+        <!--          <button class="btn" >팔로우 취소</button>
+                  <%# end %>
+                <%# else %>
+                <%#= form_tag follows_path, method: :post, class: "right" do %> 
+                 <input type="hidden" name="followed_id" value="<%#= @post.user.id%>">
+                 <button class="btn">팔로우</button>-->
+                 <%# end %>
+                <%# end %>
+              <%# end %>
+            
+                
+  
+               
+            </div>          
+          
+          
+<!--          <a href="https://youtu.be/<%#= @post.video.split("/")[-1] %>?t=<%#=@post.content%>s"><%#= simple_format(@post.content) %></a>
+          <a href="https://www.youtub e.com/watch?v=<%#= @post.video.split("/")[-1] %>&t=<%#=@post.content%>s"><%#= simple_format(@post.content) %></a>
+-->
+          <div class="questioncontents" style="margin-top: 1px; padding-top:6px; background-color: #FCFCFC; height:300px; text-align: left; font-size:1.3rem;">
+            <strong> <%= simple_format(@post.content) %></strong>
+          </div>
+      </div>
+    </div>
+    
+
+
+    <div id="google_translate_element" align="right"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({pageLanguage: 'ko', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+</div>
+    <%#= render partial: "comments/template", locals: {commentable: @post, new_comment: @comment} %>
+   <div class="jumbotron" style="margin-top: 20px; padding-top:30px; background-color: white; border-radius: 1; box-shadow: 0 6px 12px rgba(0,0,0,.1);"> 
+   <% if @post.comments.present? %>
+   <ul class="list-group list-group-flush">
+      <% @post.comments.each do |comment| %>
+        <li class="list-group-item">
+          <div class="row">
+              <div class="col-1" style="text-align:center;">
+                  <img width="40" height="40" class="rounded-circle border" src="<%= comment.user.avatar.url %>" /> <br/>
+                  
+                  
+                    <div style="font-weight: 600;">
+                  <a href="/post/user_info/<%= comment.user.id %>"><span class="title"><%= comment.user.username %></span></a>
+                  </div>
+              </div>
+              <div class="col-9">
+                  <p><%= simple_format(comment.content) %></p>
+                  <% if comment.audio.url.nil? %>
+                  <% else %>
+                   <audio controls src="<%= comment.audio.url %>"></audio>
+                  <% end %>
+               </div>
+              <div class="col-2"> 
+                  <div style="text-align:right;">
+                  <small><%= comment.created_at.to_s.split("+").first %></small>
+                    <% if comment.user == current_user %>
+                    <a href= "/comment/destroy/<%=comment.id %>"><span class="badge">삭제</span></a>
+                    <% end %>
+                  </div>                
+              </div>                
+              
+              
+              <!--<audio controls>-->
+              <!--<source src="<%# comment.audio.url %>" type="audio/ogg">-->
+              <!--<source src="horse.mp3" type="audio/mpeg">-->
+              <!--  Your browser does not support the audio element.-->
+              <!--</audio>-->
+              
+              
+              
+              <%#= render partial: "comments/template", locals: {commentable: @post, new_comment: @comment} %>
+             
+              
+              </div>
+          
+        </li>
+      <% end %>
+      </ul>
+    <% end %>
+    
+    <br>
+    <div style="padding:0px 16px 0px 16px;">
+    <form action="/comment/create" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="post_id" value="<%=@post.id%>"></input>
+            <input type="hidden" name="username" value="<%= @post.user.username %>"></input>
+            
+            
+            
+            <div class="row">
+                <textarea name="content" class="form-control col-11" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <button type="submit" class="btn btn-light col-1">작성</button>
+            </div>
+            
+            
+        <div>   
+            <div class="form-group file-field input-field">
+                <span>Voice File</span>
+                
+                 <%#= form_for @comment, url: comment_create_path, html: { multipart: true } do |form| %>
+                  <%#= form.file_field :audio %>
+                  <%#= form.submit %>
+                 <%# end %>
+                 
+                 <input type="file" name="audio" accept="audio/*"></input>
+              <!--<div class="file-path-wrapper">-->
+              <!--  <input class="file-path validate" type="text" placeholder="Upload your files">-->
+              <!--</div>-->
+            </div>
+         </div> 
+
+    </form>
+    </div>
+ 
+</div>
+</div>
+
+<%= render "footer" %>
